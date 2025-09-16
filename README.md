@@ -19,7 +19,7 @@ A simple calculator written in C. This project was created as part of a vocation
 To get the project, clone it to your local environment using the following command:
 
 ```bash
-git clone [https://github.com/cazeimke/Calc-Z-P.git](https://github.com/cazeimke/Calc-Z-P.git)
+git clone https://github.com/cazeimke/Calc-Z-P.git
 ```
 
 #### 2. Compiling
