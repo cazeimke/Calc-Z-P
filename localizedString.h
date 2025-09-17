@@ -25,11 +25,11 @@ char localizedStrings[32][2][101] =
     {"Binäre Berechnungen",
     "Binary Calculations"
     },
-    {"Erweiterte Berechnungen",
-    "Advanced Calculations"
+    {"Umrechnungen",
+    "Conversion"
     },
-    {"EINSTELLUNGEN",
-    "SETTINGS"
+    {"Einstellungen",
+    "Settings"
     },
     {"Sprache",
     "Language"
