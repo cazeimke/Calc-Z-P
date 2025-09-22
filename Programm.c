@@ -7,6 +7,8 @@
 #include "ZeLib/ZThreading.h"
 #include "einfacheBerechnungen.h"
 #include "localizedString.h"
+#include "binaryFunction.h"
+
 
 // --- Globale Variablen & Konstanten ---
 int CURRENT_WINDOW = 0;
@@ -18,6 +20,7 @@ const int TITLE_Y = 3;
 const int INPUT_Y = 5;
 const int RESULT_Y = 7;
 const int INPUT_X_START = 17;
+const int FOOTER_Y = 15;
 
 // Sprachvariable
 unsigned char lang = 0;
@@ -41,6 +44,8 @@ int main(void) {
 
     WINDOWMANAGER_INIT();
     einfacheBerechnung_init(&g_einfacheBerechnung);
+    binaryFunction_init();
+
 
     clearConsole();
     zeichneRahmen();
@@ -63,7 +68,7 @@ void zeichneRahmen(void) {
     printf("%s\n", localizedStrings[0][lang]);
     printf("------------------------------------------------------------------\n");
     
-    gotoxy(0, 15);
+    gotoxy(0, FOOTER_Y);
     printf("------------------------------------------------------------------\n");
     if (CURRENT_WINDOW == 4) {
         printf("q = %s\tb = %s\tm = %s", localizedStrings[3][lang], localizedStrings[17][lang], localizedStrings[4][lang]);
@@ -153,7 +158,7 @@ void main_runner(void) {
                 einfacheBerechnung_handleInput(&g_einfacheBerechnung, inputChar);
                 break;
             case 2:
-                // ...
+                binaryMain(TITLE_Y, RESULT_Y, INPUT_Y,INPUT_X_START, FOOTER_Y,inputChar);
                 break;
             case 3:
                 // ...
