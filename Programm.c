@@ -22,8 +22,6 @@ const int RESULT_Y = 7;
 const int INPUT_X_START = 17;
 const int FOOTER_Y = 15;
 
-// Sprachvariable
-unsigned char lang = 0;
 
 // Globale Variable für den Zustand der einfachen Berechnung
 EinfacheBerechnungState g_einfacheBerechnung;
@@ -72,6 +70,10 @@ void zeichneRahmen(void) {
     printf("------------------------------------------------------------------\n");
     if (CURRENT_WINDOW == 4) {
         printf("q = %s\tb = %s\tm = %s", localizedStrings[3][lang], localizedStrings[17][lang], localizedStrings[4][lang]);
+    } else if (CURRENT_WINDOW == 2){
+        printf( "q = %s\tb = %s\tm = %s\nTAB = %s\t\tEnter = %s", 
+            localizedStrings[3][lang], localizedStrings[17][lang], localizedStrings[4][lang], 
+            localizedStrings[18][lang], localizedStrings[19][lang] );
     } else {
         printf("q = %s\t\tm = %s", localizedStrings[3][lang], localizedStrings[4][lang]);
     }
