@@ -27,7 +27,7 @@ void construct_WindowManager(windowManager_pointer *wm, windowManager_content *w
 }
 
 
-void binaryOperation(NUMBERS* nmb, int mode){
+void binOp(NUMBERS* nmb, int mode){
 
 
     for(int i = 0; i < 9; i++){
@@ -97,6 +97,32 @@ void binaryMain(
     windowManager_content wmc; 
     
     
+
+    //      Header beschriften - langString[7][lang]
+    construct_WindowManager(&wm, &wmc, header_x, 0, "Binäre Operationen"); 
+    writeOnDisplay(&wm, &wmc);
+
+
+    //      Anzeige des ausgewählten Blocks
+    construct_WindowManager(&wm, &wmc, selInp ? input_x + 1 : input_x, input_y - 2, ">");         // Ist INPUT_Y > 2?
+    writeOnDisplay(&wm, &wmc);   
+
+
+    //      Anzeige des erstem Input-Block mit Operator-String
+    construct_WindowManager(&wm, &wmc, input_x, input_y, nmbrs.first);
+    writeOnDisplay(&wm, &wmc);
+
+    //      Anzeige des erstem Input-Block mit Operator-String
+    construct_WindowManager(&wm, &wmc, input_x, input_y + 9, nmbrs.modeStr);
+    writeOnDisplay(&wm, &wmc);
+    
+
+
+    //      Anzeige des zweiten Input-Block
+
+    construct_WindowManager(&wm, &wmc, input_x + 1, input_y, nmbrs.mode != 2 ?  nmbrs.second : "---------");
+    writeOnDisplay(&wm, &wmc);   
+
     
     switch (input)
     {
@@ -113,8 +139,7 @@ void binaryMain(
             selInp = !selInp;   
         break;
         case '\t':                                     
-            nmbrs.mode = 
-                ( nmbrs.mode != 3 ) ? nmbrs.mode++ : 0;            
+            nmbrs.mode = ( nmbrs.mode != 3 ) ? nmbrs.mode + 1 : 0;            
             switch(nmbrs.mode){
                 case 0:
                     strcpy(nmbrs.modeStr, " AND");
@@ -132,37 +157,17 @@ void binaryMain(
                 break;
             } 
         break;
+
         default:
         break;
     }
 
 
-    //      Header beschriften - langString[7][lang]
-    construct_WindowManager(&wm, &wmc, header_x, 0, "Binäre Operationen"); 
-    writeOnDisplay(&wm, &wmc);
-
-
-    //      Anzeige des ausgewählten Blocks
-    construct_WindowManager(&wm, &wmc, selInp ? input_x + 1 : input_x, input_y - 2, ">");         // Ist INPUT_Y > 2?
-    writeOnDisplay(&wm, &wmc);   
-
-
-    //      Anzeige des erstem Input-Block mit Operator-String
-    construct_WindowManager(&wm, &wmc, input_x, input_y, strcat(nmbrs.first, nmbrs.modeStr));
-    writeOnDisplay(&wm, &wmc);
-
-
-    //      Anzeige des zweiten Input-Block
-    construct_WindowManager(&wm, &wmc, input_x + 1, input_y, ( nmbrs.mode =! 2 ) ?  nmbrs.second : "---------");
-    writeOnDisplay(&wm, &wmc);   
 
     //      Berechnung aus dem Struct
-    binaryOperation(&nmbrs, nmbrs.mode);
+    binOp(&nmbrs, nmbrs.mode);
 
     //      Ergebnis-Block
     construct_WindowManager(&wm, &wmc, input_x + 3, input_y, nmbrs.result); 
-    writeOnDisplay(&wm, &wmc);   
-
-    construct_WindowManager(&wm, &wmc, footer_x, 0, "langString[ ][lang]"); 
     writeOnDisplay(&wm, &wmc);   
 }

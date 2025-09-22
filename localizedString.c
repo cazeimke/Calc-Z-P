@@ -58,5 +58,11 @@ char localizedStrings[32][2][101]=
     },
     {"Zurück",
     "Back"
+    },
+    {"Operator Wechseln",
+    "Change Operator"
+    },
+    {"Feld Wechseln",
+    "Change Input"
     }
 };
