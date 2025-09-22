@@ -1,4 +1,14 @@
 
+#ifndef BINARY_FUNCTION_H
+#define BINARY_FUNCTION_H
+
+#include "ZeLib\WindowManager.h"
+#include "ZeLib\ZcBase.h"
+#include "ZeLib\ZThreading.h"
+
+#include <stdio.h>
+#include <string.h>
+
 typedef struct
 {
     char first[10];                       //    Erste Binärzahl
@@ -8,29 +18,24 @@ typedef struct
     char    modeStr[5];                   //    OperatorString: " AND", " OR ", " NOT", " XOR"
 }NUMBERS;
 
-typedef struct {
-    int x;
-    int y;
-//    int currentPosition;
-} windowManager_pointer;
 
 
-typedef struct {
-//    int type;
-    char* content;
-//    int x;
-//    int y;
-} windowManager_content;
+/**
+ * @brief Initialising the function "Binary Operations"
+ */
+void binaryFunction_init (void);
 
 
-void construct_WindowManager(windowManager_pointer wm, windowManager_content wmc, int x, int y, char* text);
-
+void construct_WindowManager(windowManager_pointer *wm, windowManager_content *wmc, int x, int y, char* text);
 
 void binaryOperation(NUMBERS* nmb, int mode);
 
 void bitwiseLeftStr(char* binaryString, char value);
 
 void binaryMain(
-    void (*wmfunc)(windowManager_pointer, windowManager_content), 
+
     const int header_x, const int content_x, const int input_x,
     const int input_y,  const int footer_x, const char input);
+
+
+#endif // BINARY_FUNCTION_H
