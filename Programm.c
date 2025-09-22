@@ -115,8 +115,8 @@ int main(void) {
 
 
 
-                case 2:                 //Binaer
-
+                case 2:                 //Input ins Binäre mit Platzhalter für die Konstanten
+                    binaryMain( _ ,HEADER_X , CONTENT_X, INPUT_X, INPUT_Y, FOOTER_X, inputChar);
                     break;
 
 
@@ -351,7 +351,7 @@ void einstellungen(){
 //  Konzeptuell vorerst
 void einheitAuswahl(){
     changeCurrentWindow(-1);
-    
+
     gotoxy(0, TITLE_Y );
     printf("1. %s", "Länge (mm cm dm m km)");
 
