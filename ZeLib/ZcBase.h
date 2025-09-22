@@ -11,7 +11,8 @@
     #include <stdlib.h>  
     #include <unistd.h>  
     #include <termios.h> 
-    #include <sys/select.h> 
+    #include <sys/select.h>
+    #include <fcntl.h>
 #endif
 
 

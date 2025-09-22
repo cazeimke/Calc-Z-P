@@ -136,7 +136,7 @@ void changeCurrentWindow(int window) {
 // --- Hauptschleife ---
 void main_runner(void) {
     if (kbhit() || firstRun) {
-        inputChar = firstRun ? 0 : getNonBlockingInput();
+        inputChar = firstRun ? '0' : getNonBlockingInput();
         firstRun = 0;
 
         if (inputChar == 'q') {
