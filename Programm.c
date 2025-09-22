@@ -9,7 +9,6 @@
 #include "localizedString.h"
 #include "binaryFunction.h"
 
-
 // --- Globale Variablen & Konstanten ---
 int CURRENT_WINDOW = 0;
 int firstRun = 1;

@@ -1,4 +1,3 @@
-
 #ifndef BINARY_FUNCTION_H
 #define BINARY_FUNCTION_H
 
