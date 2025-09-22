@@ -30,6 +30,11 @@ void einfacheBerechnung_calc(void);
 void einstellungen();
 
 void menu(char input);
+void changeCurrentWindow(int window);
+void einheitAuswahl();
+
+
+
 
 // --- Globale Variablen & Konstanten ---
 int CURRENT_WINDOW = 1;
@@ -83,27 +88,48 @@ int main(void) {
             }
 
             if (inputChar == 'm') {
-                CURRENT_WINDOW = 0;
-                clearConsole();
-                zeichneRahmen();
+                changeCurrentWindow(0);
             }
 
             if (inputChar == 'b' && CURRENT_WINDOW == 4)
             {
-                CURRENT_WINDOW = 0;
-                clearConsole();
-                zeichneRahmen();
+                changeCurrentWindow(0);
             }
             
 
             switch (CURRENT_WINDOW) {
-                case 1:
+                case 0:                 //Menü
+                    menu(inputChar);
+                    break;
+                    
+                case 1:                 //Einfache Berechnung
                     einfacheBerechnung(inputChar);
                     break;
 
 
-                // Einstellungen Input
-                case 4:
+
+
+
+                case 2:                 //Binaer
+                    break;
+
+
+
+
+
+
+
+
+                case 3:                 //Erweiterte Berrechnung
+                    //einfacheBerechnung(inputChar);
+                    break;
+
+
+
+
+
+
+                case 4: // Einstellungen Input
                         switch (inputChar)
                         {
                         case '1':
@@ -127,9 +153,7 @@ int main(void) {
 
                     break;
 
-                case 0:
-                    menu(inputChar);
-                    break;
+                
             }
         }
         #ifdef _WIN32
@@ -158,7 +182,7 @@ void zeichneRahmen(void) {
     printf("%s\n", localizedStrings[0][lang]);                                      //  "Herzlich Willkommen..."
     printf("------------------------------------------------------------------\n");
     
-    gotoxy(0, 10);
+    gotoxy(0, 15);
     printf("------------------------------------------------------------------\n");
     if (CURRENT_WINDOW == 4)
     {
@@ -189,6 +213,7 @@ void einfacheBerechnung(char input) {
     // Flag, um zu wissen, ob der Puffer geändert wurde
     int pufferWurdeGeaendert = 0;
 
+
     if (isdigit(input) || input == '.' || input == ',' || input == '+' || input == '-' || input == '*' || input == '/') {
         if (input == '+' || input == '-' || input == '*' || input == '/')
             g_currentNumberDot = 0;
@@ -201,6 +226,7 @@ void einfacheBerechnung(char input) {
                 g_eingabePuffer = (char*)realloc(g_eingabePuffer, g_pufferGroesse * sizeof(char));
                 if (g_eingabePuffer == NULL) { showResult(localizedStrings[14][lang]); return; }
             }
+
             g_eingabePuffer[g_pufferIndex++] = input;
             g_eingabePuffer[g_pufferIndex] = '\0';
             pufferWurdeGeaendert = 1;
@@ -227,6 +253,7 @@ void einfacheBerechnung(char input) {
         g_eingabePuffer[--g_pufferIndex] = '\0';
         pufferWurdeGeaendert = 1;
     } 
+
 
     // Eingabezeile neu zeichnen
     gotoxy(0, INPUT_Y);
@@ -289,11 +316,43 @@ void einstellungen(){
     char txt[30];
 
     if(lang)
-        sprintf(txt, "1. %s\n2. >%s<", localizedStrings[11][0], localizedStrings[11][1]);
+        sprintf(txt, "1. %s\n2. [%s]", localizedStrings[11][0], localizedStrings[11][1]);
     else 
-        sprintf(txt, "1. >%s<\n2. %s", localizedStrings[11][0], localizedStrings[11][1]);
+        sprintf(txt, "1. [%s]\n2. %s", localizedStrings[11][0], localizedStrings[11][1]);
 
     printf("%s\t\n%s", localizedStrings[10][lang], txt);
+}
+
+
+
+
+
+
+
+void einheitAuswahl(){
+    clearConsole();
+    zeichneRahmen();
+    
+    gotoxy(0, TITLE_Y );
+    printf("1. %s", "Länge (mm cm dm m km)");
+
+    gotoxy(0, TITLE_Y + 1);
+    printf("2. %s", "Fläche (mm² cm² m² km²)");
+    
+    gotoxy(0, TITLE_Y + 2);
+    printf("3. %s", "Volumen (mm³ cm³ m³ km³)");
+
+    gotoxy(0, TITLE_Y + 3);
+    printf("4. %s", "Flüssigkeit (ml cl l m³)");
+
+    gotoxy(0, TITLE_Y + 4);
+    printf("5. %s", "Gewicht (mg g kg)");
+
+    gotoxy(0, TITLE_Y + 5);
+    printf("6. %s", "Daten (Bit Byte KB MB GB TB)");
+
+
+
 }
 
 
@@ -321,10 +380,7 @@ void menu(char input){
     switch (input)
     {
     case '1':                   //Einfache Berechnungen
-        clearConsole();
-        zeichneRahmen();
-        CURRENT_WINDOW = 1;
-        gotoxy(0, TITLE_Y);
+        changeCurrentWindow(1);
         printf("%s", localizedStrings[6][lang]);
         einfacheBerechnung('n');
         break;
@@ -335,13 +391,48 @@ void menu(char input){
     
         break;
 
-    case '3':                   //Erweiterte Berechnungen
+
+
+
+
+
+
+
+
+
+
+
+
+
+    case '3':                   //Umrechnung
+        changeCurrentWindow(3);
+        //gotoxy(0, TITLE_Y);
+        // printf("%s", localizedStrings[8][lang]);
+
+        einheitAuswahl();
+
         break;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     case '4':                   //Einstellungen
-        clearConsole();
-        zeichneRahmen();
-        CURRENT_WINDOW = 4;
+        changeCurrentWindow(4);
         gotoxy(0, TITLE_Y);
         printf("%s > %s", localizedStrings[4][lang], localizedStrings[9][lang]);
         einstellungen();
@@ -353,6 +444,12 @@ void menu(char input){
 
 }
 
+
+void changeCurrentWindow(int window){
+    clearConsole();
+    zeichneRahmen();
+    CURRENT_WINDOW = window;
+}
 
 
 // --- Hilfsfunktionen (gotoxy, etc. bleiben unverändert) ---
