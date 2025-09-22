@@ -5,6 +5,7 @@
 #include "ZeLib\WindowManager.h"
 #include "ZeLib\ZcBase.h"
 #include "ZeLib\ZThreading.h"
+#include "localizedString.h"
 
 #include <stdio.h>
 #include <string.h>

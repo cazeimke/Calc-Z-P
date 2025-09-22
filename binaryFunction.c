@@ -21,8 +21,8 @@ void binaryFunction_init (void){
 
 
 void construct_WindowManager(windowManager_pointer *wm, windowManager_content *wmc, int x, int y, char* text){
-    wm->x = x;
-    wm->y = y;
+    wm->x = y;
+    wm->y = x;
     wmc->content = text;
 }
 
@@ -93,8 +93,11 @@ void binaryMain(
     const int header_x, const int content_x, const int input_x,
     const int input_y,  const int footer_x, const char input) 
 {    
-    windowManager_pointer *wm;
-    windowManager_content *wmc; 
+    windowManager_pointer wm;
+    windowManager_content wmc; 
+    
+    
+    
     switch (input)
     {
         case '0':
@@ -135,31 +138,31 @@ void binaryMain(
 
 
     //      Header beschriften - langString[7][lang]
-    construct_WindowManager(wm, wmc, header_x, 0, "Binäre Operationen"); 
-    writeOnDisplay(wm, wmc);
+    construct_WindowManager(&wm, &wmc, header_x, 0, "Binäre Operationen"); 
+    writeOnDisplay(&wm, &wmc);
 
 
     //      Anzeige des ausgewählten Blocks
-    construct_WindowManager(wm, wmc, selInp ? input_x + 1 : input_x, input_y - 2, ">");         // Ist INPUT_Y > 2?
-    writeOnDisplay(wm, wmc);   
+    construct_WindowManager(&wm, &wmc, selInp ? input_x + 1 : input_x, input_y - 2, ">");         // Ist INPUT_Y > 2?
+    writeOnDisplay(&wm, &wmc);   
 
 
     //      Anzeige des erstem Input-Block mit Operator-String
-    construct_WindowManager(wm, wmc, input_x, input_y, strcat(nmbrs.first, nmbrs.modeStr));
-    writeOnDisplay(wm, wmc);
+    construct_WindowManager(&wm, &wmc, input_x, input_y, strcat(nmbrs.first, nmbrs.modeStr));
+    writeOnDisplay(&wm, &wmc);
 
 
     //      Anzeige des zweiten Input-Block
-    construct_WindowManager(wm, wmc, input_x + 1, input_y, ( nmbrs.mode =! 2 ) ?  nmbrs.second : "---------");
-    writeOnDisplay(wm, wmc);   
+    construct_WindowManager(&wm, &wmc, input_x + 1, input_y, ( nmbrs.mode =! 2 ) ?  nmbrs.second : "---------");
+    writeOnDisplay(&wm, &wmc);   
 
     //      Berechnung aus dem Struct
     binaryOperation(&nmbrs, nmbrs.mode);
 
     //      Ergebnis-Block
-    construct_WindowManager(wm, wmc, input_x + 3, input_y, nmbrs.result); 
-    writeOnDisplay(wm, wmc);   
+    construct_WindowManager(&wm, &wmc, input_x + 3, input_y, nmbrs.result); 
+    writeOnDisplay(&wm, &wmc);   
 
-    construct_WindowManager(wm, wmc, footer_x, 0, "langString[ ][lang]"); 
-    writeOnDisplay(wm, wmc);   
+    construct_WindowManager(&wm, &wmc, footer_x, 0, "langString[ ][lang]"); 
+    writeOnDisplay(&wm, &wmc);   
 }
