@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <string.h>
+#include "localizedString.h"
 
 typedef struct {
     int x;
     int y;
 //    int currentPosition;
 } windowManager_pointer;
+
 
 typedef struct {
 //    int type;
@@ -124,6 +126,7 @@ void binaryOperation(NUMBERS* nmb, int mode){
 
 
 
+
 //      Nimmt charArray[10], verschiebt um 1 nach links und setzt value ein 
 void bitwiseLeftStr(char* binaryString, char value){
 
@@ -170,7 +173,7 @@ void bitwiseLeftStr(char* binaryString, char value){
 //      Startpunkt      -   Aufruf nach jedem Tastendruch
 //  Bei Erstaufruf aus Menü nach Wechsel von CURRENT_WINDOW die Funktion mit input 'n' initialisieren.
 
-void BinäreOperation(
+void binaryMain(
     void (*wmfunc)(windowManager_pointer, windowManager_content), 
     const int header_x, const int content_x, const int input_x,
     const int input_y,  const int footer_x, const char input) 
@@ -268,7 +271,7 @@ void BinäreOperation(
 #pragma region  Zeichnung des Frames
 
     //      Header beschriften - langString[7][lang]
-    construct_WindowManager(wm, wmc, header_x, 0, "Binäre Operationen"); 
+    construct_WindowManager(wm, wmc, header_x, 0, localizedStrings[7][lang]); 
     wmfunc(wm, wmc);
 
 
@@ -307,7 +310,9 @@ void BinäreOperation(
 
 #pragma region  Footer
 
-    construct_WindowManager(wm, wmc, footer_x, 0, "langString[ ][lang]"); 
+
+    //zeichneRahmen aus der Main benutzen?
+    construct_WindowManager(wm, wmc, footer_x, 0, localizedStrings[ ][lang] "Footer"); 
     wmfunc(wm, wmc);
 
 #pragma endregion

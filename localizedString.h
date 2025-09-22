@@ -1,4 +1,7 @@
 
+// Sprachvariable   0 = Deutsch   1 = English
+unsigned char lang = 0;
+
 char localizedStrings[32][2][101] =
 {
     {"Herzlich Willkommen beim Taschenrechner von Christopher und Patrick",
@@ -54,5 +57,12 @@ char localizedStrings[32][2][101] =
     },
     {"Zurück",
     "Back"
+    },
+    {"Operator Wechseln",
+    "Change Operator"
+    },
+    {"Feld Wechseln",
+    "Change Input"
     }
+
 };
