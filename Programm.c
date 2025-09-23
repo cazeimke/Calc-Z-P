@@ -165,7 +165,6 @@ void main_runner(void) {
             changeCurrentWindow(0);
         }
 
-
         switch (CURRENT_WINDOW) {
             case 0:
                 menu(inputChar);
