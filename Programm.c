@@ -21,8 +21,6 @@ const int RESULT_Y = 7;
 const int INPUT_X_START = 17;
 const int FOOTER_Y = 15;
 
-// Sprachvariable
-unsigned char lang = 0;
 
 // Globale Variable für den Zustand der einfachen Berechnung
 EinfacheBerechnungState g_einfacheBerechnung;
@@ -34,6 +32,7 @@ void einheitAuswahl(void);
 void main_runner(void);
 void menu(char input);
 void changeCurrentWindow(int window);
+void drawMenu();
 
 // --- Hauptprogramm ---
 int main(void) {
@@ -45,9 +44,7 @@ int main(void) {
     einfacheBerechnung_init(&g_einfacheBerechnung);
     binaryFunction_init();
 
-
-    clearConsole();
-    zeichneRahmen();
+    changeCurrentWindow(0); 
     
     Threading_Main(&main_runner, 0);
 
@@ -71,6 +68,10 @@ void zeichneRahmen(void) {
     printf("------------------------------------------------------------------\n");
     if (CURRENT_WINDOW == 4) {
         printf("q = %s\tb = %s\tm = %s", localizedStrings[3][lang], localizedStrings[17][lang], localizedStrings[4][lang]);
+    } else if (CURRENT_WINDOW == 2){
+        printf( "q = %s\tb = %s\tm = %s\nTAB = %s\t\tEnter = %s", 
+            localizedStrings[3][lang], localizedStrings[17][lang], localizedStrings[4][lang], 
+            localizedStrings[18][lang], localizedStrings[19][lang]);
     } else {
         printf("q = %s\t\tm = %s", localizedStrings[3][lang], localizedStrings[4][lang]);
     }
@@ -91,22 +92,9 @@ void einstellungen(void) {
 }
 
 void menu(char input) {
-    gotoxy(0, TITLE_Y);
-    printf("%s", localizedStrings[4][lang]);
-    gotoxy(0, TITLE_Y + 2);
-    printf("%s:", localizedStrings[5][lang]);
-        
-    gotoxy(0, TITLE_Y + 3);
-    printf("1 = %s", localizedStrings[6][lang]);
-
-    gotoxy(0, TITLE_Y + 4);
-    printf("2 = %s", localizedStrings[7][lang]);
-
-    gotoxy(0, TITLE_Y + 5);
-    printf("3 = %s", localizedStrings[8][lang]);
-
-    gotoxy(0, TITLE_Y + 6);
-    printf("4 = %s (%s)", localizedStrings[9][lang], localizedStrings[10][lang]);
+    
+    if( input == '0' || input == 'm' )
+        drawMenu();
 
     switch (input) {
         case '1':
@@ -115,6 +103,8 @@ void menu(char input) {
             break;
         case '2':
             changeCurrentWindow(2);
+            binaryMain(TITLE_Y, RESULT_Y, INPUT_Y,INPUT_X_START, FOOTER_Y, input);
+
             break;
         case '3':
             break;
@@ -127,17 +117,43 @@ void menu(char input) {
     }
 }
 
+
+//  zeichnet das Menü 
+void drawMenu(){
+    gotoxy(0, TITLE_Y);
+    printf("%s", localizedStrings[4][lang]);
+
+    gotoxy(0, TITLE_Y + 2);
+    printf("%s:", localizedStrings[5][lang]);
+
+    gotoxy(0, TITLE_Y + 3);
+    printf("1 = %s", localizedStrings[6][lang]);
+
+    gotoxy(0, TITLE_Y + 4);
+    printf("2 = %s", localizedStrings[7][lang]);
+
+    gotoxy(0, TITLE_Y + 5);
+    printf("3 = %s", localizedStrings[8][lang]);
+
+    gotoxy(0, TITLE_Y + 6);
+    printf("4 = %s (%s)", localizedStrings[9][lang], localizedStrings[10][lang]);
+}
+
+//Wenn window -1 ist, dann brauch das System nichts wechseln
 void changeCurrentWindow(int window) {
+    if (window != -1)
+        CURRENT_WINDOW = window;
     clearConsole();
     zeichneRahmen();
-    CURRENT_WINDOW = window;
 }
 
 // --- Hauptschleife ---
 void main_runner(void) {
     if (kbhit() || firstRun) {
-        inputChar = firstRun ? 0 : getNonBlockingInput();
+        inputChar = firstRun ? '0' : getNonBlockingInput();
+        
         firstRun = 0;
+
 
         if (inputChar == 'q') {
             THREADING_MAIN_BREAK = 1;
@@ -149,6 +165,7 @@ void main_runner(void) {
             changeCurrentWindow(0);
         }
 
+
         switch (CURRENT_WINDOW) {
             case 0:
                 menu(inputChar);
@@ -158,7 +175,7 @@ void main_runner(void) {
                 break;
             case 2:
                 clearConsole();
-                binaryMain(TITLE_Y, RESULT_Y, INPUT_Y,INPUT_X_START, FOOTER_Y,inputChar);
+                binaryMain(TITLE_Y, RESULT_Y, INPUT_Y,INPUT_X_START, FOOTER_Y, inputChar);
                 break;
             case 3:
                 // ...
