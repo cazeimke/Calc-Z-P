@@ -39,6 +39,7 @@ int main(void) {
         system("chcp 65001");
     #endif
 
+
     WINDOWMANAGER_INIT();
     einfacheBerechnung_init(&g_einfacheBerechnung);
 
@@ -153,7 +154,11 @@ void main_runner(void) {
                 einfacheBerechnung_handleInput(&g_einfacheBerechnung, inputChar);
                 break;
             case 2:
+<<<<<<< Updated upstream
                 // ...
+=======
+                binaryMain(TITLE_Y, RESULT_Y, INPUT_Y,INPUT_X_START, FOOTER_Y, inputChar);
+>>>>>>> Stashed changes
                 break;
             case 3:
                 // ...
