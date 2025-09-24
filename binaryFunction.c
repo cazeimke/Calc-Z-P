@@ -192,5 +192,10 @@ void binaryMain(
 
     //      Ergebnis-Block
     construct_WindowManager(&wm, &wmc, input_x + 3, input_y, nmbrs.result); 
-    writeOnDisplay(&wm, &wmc);   
+    writeOnDisplay(&wm, &wmc);  
+
+    //  Bringe Cursor auf Cursor
+    construct_WindowManager(&wm, &wmc, selInp ? input_x + 1 : input_x, input_y + nmbrs.cursor[selInp], ""); 
+    writeOnDisplay(&wm, &wmc);  
+    
 }

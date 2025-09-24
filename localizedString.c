@@ -2,7 +2,6 @@
 
 // Sprachvariable
 int lang = 0;
-
 char localizedStrings[32][2][101]=
 {
     {"Herzlich Willkommen beim Taschenrechner von Christopher und Patrick",
