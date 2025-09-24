@@ -83,7 +83,7 @@ void bitwiseLeftStr(char* binaryString, int cursor, char value){
     // Overflow-Zustand wenn letzte Ziffer erreicht ist, danach 
     //Zusatzvariable als Zähler, die bei 0 anfängt
 
-    if(!isdiqgit(value)) return;
+    if(!isdigit(value)) return;
 
     if (cursor < 9)
     {

@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 
+
 typedef struct
 {
     char first[10];                       //    Erste Binärzahl
@@ -18,7 +19,6 @@ typedef struct
     int     mode;                         //    Operatorauswahl:  0 = AND; 1 = OR; 2 = NOT; 3 = XOR
     char    modeStr[5];                   //    OperatorString: " AND", " OR ", " NOT", " XOR"
 }NUMBERS;
-
 
 
 /**
