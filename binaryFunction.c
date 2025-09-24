@@ -156,6 +156,45 @@ void binaryMain(
                 break;
             } 
         break;
+        case '\b':
+
+            if(nmbrs.cursor[selInp] > 0 ){
+                if(nmbrs.cursor[selInp] == 5){
+                    nmbrs.cursor[selInp]--;
+            }
+                                        
+            switch (selInp)
+            {
+
+            case 0:
+                nmbrs.first[--nmbrs.cursor[selInp]] = '0';
+            break;
+            
+            case 1:
+                nmbrs.second[--nmbrs.cursor[selInp]] = '0';
+            break;
+
+            default:
+                break;
+            }
+    }
+/*
+            if(!selInp){
+            } else
+
+                if(nmbrs.cursor[selInp] > 0 ){
+                    if(nmbrs.cursor[selInp] == 5){
+                        nmbrs.cursor[selInp]--;
+                    }                           
+                    nmbrs.first[--nmbrs.cursor[selInp]] = '0';
+                }
+
+
+                
+                if(nmbrs.second[nmbrs.cursor[selInp]] > 0  )
+                    nmbrs.second[nmbrs.cursor[selInp]] = '0';
+*/
+        break;
         default:
         break;
     }
