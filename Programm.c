@@ -22,6 +22,7 @@ const int INPUT_X_START = 17;
 const int FOOTER_Y = 15;
 
 
+
 // Globale Variable für den Zustand der einfachen Berechnung
 EinfacheBerechnungState g_einfacheBerechnung;
 
@@ -181,7 +182,7 @@ void main_runner(void) {
                 break;
             case 4:
                 if (inputChar == '1' || inputChar == '2') {
-                    lang = inputChar - '1';
+                    lang = atoi(&inputChar) - 1;
                     changeCurrentWindow(4);
                     einstellungen();
                 }

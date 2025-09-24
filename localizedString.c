@@ -1,7 +1,7 @@
 #include "localizedString.h"
 
 // Sprachvariable
-unsigned char lang = 0;
+int lang = 0;
 
 char localizedStrings[32][2][101]=
 {
