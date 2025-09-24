@@ -94,7 +94,7 @@ void einstellungen(void) {
 
 void menu(char input) {
     
-    if( input == '0' || input == 'm' )
+    if( input == '0' || input == 'm' || input == 'b')
         drawMenu();
 
     switch (input) {
