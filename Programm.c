@@ -18,7 +18,7 @@ const int TITLE_Y = 3;
 const int INPUT_Y = 5;
 const int RESULT_Y = 7;
 const int INPUT_X_START = 17;
-const int FOOTER_Y = 15;
+const int FOOTER_Y = 15;    
 
 // Sprachvariable
 unsigned char lang = 0;
@@ -155,11 +155,8 @@ void main_runner(void) {
                 einfacheBerechnung_handleInput(&g_einfacheBerechnung, inputChar);
                 break;
             case 2:
-<<<<<<< Updated upstream
-                // ...
-=======
                 binaryMain(TITLE_Y, RESULT_Y, INPUT_Y,INPUT_X_START, FOOTER_Y, inputChar);
->>>>>>> Stashed changes
+
                 break;
             case 3:
                 // ...
