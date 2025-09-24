@@ -29,7 +29,7 @@ void binaryFunction_init (void);
 
 void construct_WindowManager(windowManager_pointer *wm, windowManager_content *wmc, int x, int y, char* text);
 
-void binaryOperation(NUMBERS* nmb, int mode);
+void binaryOperation(NUMBERS* nmb, int cursor, int mode);
 
 void bitwiseLeftStr(char* binaryString, int cursor, char value);
 
