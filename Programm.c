@@ -18,6 +18,7 @@ const int TITLE_Y = 3;
 const int INPUT_Y = 5;
 const int RESULT_Y = 7;
 const int INPUT_X_START = 17;
+const int FOOTER_Y = 15;
 
 // Sprachvariable
 unsigned char lang = 0;
