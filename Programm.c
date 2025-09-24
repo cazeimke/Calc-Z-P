@@ -104,7 +104,7 @@ void menu(char input) {
             break;
         case '2':
             changeCurrentWindow(2);
-            binaryMain(TITLE_Y, RESULT_Y, INPUT_Y,INPUT_X_START, FOOTER_Y, input);
+            binaryMain(TITLE_Y, RESULT_Y, INPUT_Y, 3, FOOTER_Y, input);
 
             break;
         case '3':
@@ -174,7 +174,7 @@ void main_runner(void) {
                 einfacheBerechnung_handleInput(&g_einfacheBerechnung, inputChar);
                 break;
             case 2:
-                binaryMain(TITLE_Y, RESULT_Y, INPUT_Y,INPUT_X_START, FOOTER_Y, inputChar);
+                binaryMain(TITLE_Y, RESULT_Y, INPUT_Y, 3, FOOTER_Y, inputChar);
                 break;
             case 3:
                 // ...
