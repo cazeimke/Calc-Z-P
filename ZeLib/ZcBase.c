@@ -28,18 +28,34 @@ void clearConsole(){
  */
 char getNonBlockingInput(void) {
 #ifdef _WIN32
-    return _getch();
+    if (_kbhit()) {
+        return _getch();
+    } else {
+        return 0; // Kein Zeichen verfügbar
+    }
 #else
     char buf = 0;
     struct termios old = {0};
-    fflush(stdout);
-    if (tcgetattr(STDIN_FILENO, &old) < 0) perror("tcgetattr()");
-    struct termios new_settings = old;
+    struct termios new_settings = {0};
+    int oldf = 0;
+
+    // Terminal-Einstellungen speichern und ändern
+    tcgetattr(STDIN_FILENO, &old);
+    new_settings = old;
     new_settings.c_lflag &= ~(ICANON | ECHO);
-    if (tcsetattr(STDIN_FILENO, TCSANOW, &new_settings) < 0) perror("tcsetattr ICANON");
-    if (read(STDIN_FILENO, &buf, 1) < 0) perror("read()");
-    if (tcsetattr(STDIN_FILENO, TCSANOW, &old) < 0) perror("tcsetattr ~ICANON");
-    return buf;
+    tcsetattr(STDIN_FILENO, TCSANOW, &new_settings);
+
+    // Dateideskriptor auf nicht-blockierend setzen
+    oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
+    fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
+
+    read(STDIN_FILENO, &buf, 1);
+
+    // Terminal-Einstellungen zurücksetzen
+    tcsetattr(STDIN_FILENO, TCSANOW, &old);
+    fcntl(STDIN_FILENO, F_SETFL, oldf);
+
+    return buf; // Gibt 0 zurück, wenn kein Zeichen gelesen wurde
 #endif
 }
 

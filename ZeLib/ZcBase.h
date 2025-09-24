@@ -11,7 +11,8 @@
     #include <stdlib.h>  
     #include <unistd.h>  
     #include <termios.h> 
-    #include <sys/select.h> 
+    #include <sys/select.h>
+    #include <fcntl.h>
 #endif
 
 
@@ -48,5 +49,14 @@ char getChar(void);
  * @return 1 if a key has been pressed, 0 otherwise.
  */
 int kbhit(void);
+
+
+/**
+ * @brief Reads a single character from the console without waiting for a newline.
+ * This function returns a character as soon as a key is pressed.
+ *
+ * @return The character read from the console.
+ */
+char getNonBlockingInput(void);
 
 #endif // ZCBASE_H
