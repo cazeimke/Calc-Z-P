@@ -174,7 +174,6 @@ void main_runner(void) {
                 einfacheBerechnung_handleInput(&g_einfacheBerechnung, inputChar);
                 break;
             case 2:
-                clearConsole();
                 binaryMain(TITLE_Y, RESULT_Y, INPUT_Y,INPUT_X_START, FOOTER_Y, inputChar);
                 break;
             case 3:
