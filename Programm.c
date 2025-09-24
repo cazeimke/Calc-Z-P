@@ -6,6 +6,7 @@
 #include "ZeLib/WindowManager.h"
 #include "ZeLib/ZThreading.h"
 #include "einfacheBerechnungen.h"
+#include "binaryFunction.h"
 #include "localizedString.h"
 
 // --- Globale Variablen & Konstanten ---
