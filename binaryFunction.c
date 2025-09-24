@@ -77,34 +77,14 @@ void binOp(NUMBERS* nmb){
  * @param binaryString The Binary as a Char Array of 10
  * @param value The Value that is being pushed at the last Index 
  **/
-void bitwiseLeftStr(char* binaryString, int cursor, char value){
-
-
-    // Overflow-Zustand wenn letzte Ziffer erreicht ist, danach 
-    //Zusatzvariable als Zähler, die bei 0 anfängt
+void enterDigit(char* binaryString, int cursor, char value){
 
     if(!isdigit(value)) return;
 
     if (cursor < 9)
     {
         binaryString[cursor] = value;
-    } else{
-        
-        for (int i = 0; i < 8; i++)
-        {
-            if(i < 3  || i > 4)
-                        binaryString[i] = binaryString[i+1];
-
-            else if (i == 3)
-                        binaryString[i] = binaryString[i+2];
-
-            else if (i == 4)
-                        continue;
-        }
-        binaryString[8] = value;
-    }
-
-
+    } else binaryString[cursor - 1] = value;
     
 }
     
@@ -129,10 +109,11 @@ void binaryMain(
     switch (input)
     {
         case '0':
-            bitwiseLeftStr( selInp == 0   ?  nmbrs.first : nmbrs.second, nmbrs.cursor[selInp] < 9 ? nmbrs.cursor[selInp]++ : nmbrs.cursor[selInp],'0');
+            enterDigit( selInp == 0   ?  nmbrs.first : nmbrs.second, nmbrs.cursor[selInp] < 9 ? nmbrs.cursor[selInp]++ : nmbrs.cursor[selInp],'0');
         break;
         case '1':
-            bitwiseLeftStr( selInp == 0   ?   nmbrs.first : nmbrs.second, nmbrs.cursor[selInp] < 9 ? nmbrs.cursor[selInp]++ : nmbrs.cursor[selInp], '1');
+            enterDigit( selInp == 0   ?   nmbrs.first : nmbrs.second, 
+                            nmbrs.cursor[selInp] < 9 ? nmbrs.cursor[selInp]++ : nmbrs.cursor[selInp], '1');
         break;
         case '\r':                                     
             selInp = !selInp;   
