@@ -9,15 +9,16 @@
 #include <stdio.h>
 #include <string.h>
 
+
 typedef struct
 {
     char first[10];                       //    Erste Binärzahl
     char second[10];                      //    Zweite Binärzahl
     char result[10];                      //    Ergebnis in Binär
+    int     cursor[2];                    //    Integer, der die bereits gefüllte Menge einer Zahl angibt
     int     mode;                         //    Operatorauswahl:  0 = AND; 1 = OR; 2 = NOT; 3 = XOR
     char    modeStr[5];                   //    OperatorString: " AND", " OR ", " NOT", " XOR"
 }NUMBERS;
-
 
 
 /**
@@ -28,9 +29,9 @@ void binaryFunction_init (void);
 
 void construct_WindowManager(windowManager_pointer *wm, windowManager_content *wmc, int x, int y, char* text);
 
-void binaryOperation(NUMBERS* nmb, int mode);
+void binaryOperation(NUMBERS* nmb, int cursor, int mode);
 
-void bitwiseLeftStr(char* binaryString, char value);
+void bitwiseLeftStr(char* binaryString, int cursor, char value);
 
 void binaryMain(
 

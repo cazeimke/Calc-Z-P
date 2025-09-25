@@ -22,6 +22,7 @@ const int INPUT_X_START = 17;
 const int FOOTER_Y = 15;
 
 
+
 // Globale Variable für den Zustand der einfachen Berechnung
 EinfacheBerechnungState g_einfacheBerechnung;
 
@@ -93,7 +94,7 @@ void einstellungen(void) {
 
 void menu(char input) {
     
-    if( input == '0' || input == 'm' )
+    if( input == '0' || input == 'm' || input == 'b')
         drawMenu();
 
     switch (input) {
@@ -103,7 +104,7 @@ void menu(char input) {
             break;
         case '2':
             changeCurrentWindow(2);
-            binaryMain(TITLE_Y, RESULT_Y, INPUT_Y,INPUT_X_START, FOOTER_Y, input);
+            binaryMain(TITLE_Y, RESULT_Y, INPUT_Y, 3, FOOTER_Y, input);
 
             break;
         case '3':
@@ -173,15 +174,14 @@ void main_runner(void) {
                 einfacheBerechnung_handleInput(&g_einfacheBerechnung, inputChar);
                 break;
             case 2:
-                clearConsole();
-                binaryMain(TITLE_Y, RESULT_Y, INPUT_Y,INPUT_X_START, FOOTER_Y, inputChar);
+                binaryMain(TITLE_Y, RESULT_Y, INPUT_Y, 3, FOOTER_Y, inputChar);
                 break;
             case 3:
                 // ...
                 break;
             case 4:
                 if (inputChar == '1' || inputChar == '2') {
-                    lang = inputChar - '1';
+                    lang = atoi(&inputChar) - 1;
                     changeCurrentWindow(4);
                     einstellungen();
                 }

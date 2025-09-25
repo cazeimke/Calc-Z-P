@@ -12,7 +12,7 @@ extern const int TITLE_Y;
 extern const int INPUT_Y;
 extern const int RESULT_Y;
 extern const int INPUT_X_START;
-extern unsigned char lang;
+//extern int lang;
 
 // --- Externe Deklaration der Konsolenfunktionen ---
 extern void gotoxy(int x, int y);
