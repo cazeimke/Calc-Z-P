@@ -186,6 +186,9 @@ void main_runner(void) {
                     einstellungen();
                 }
                 break;
+            default:
+                printf("%s", localizedStrings[12][lang]);
+                exit(2);
         }
     }
 }
