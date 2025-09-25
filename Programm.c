@@ -162,7 +162,7 @@ void main_runner(void) {
         if (inputChar == 'm') {
             changeCurrentWindow(0);
         }
-        if (inputChar == 'b' && CURRENT_WINDOW == 4) {
+        if (inputChar == 'b' && (CURRENT_WINDOW == 4 || CURRENT_WINDOW == 2)) {
             changeCurrentWindow(0);
         }
 
